@@ -12,16 +12,7 @@ BetterErrors::Middleware.allow_ip!('0.0.0.0/0.0.0.0')
 
 
 get "/" do
-  <<-HTML
-    <h1>Welcome to the Dice Roller</h1>
-    <p>Click a link below to roll dice:</p>
-    <ul>
-      <li><a href="/dice/2/6">Roll 2 six-sided dice</a></li>
-      <li><a href="/dice/2/10">Roll 2 ten-sided dice</a></li>
-      <li><a href="/dice/1/20">Roll 1 twenty-sided die</a></li>
-      <li><a href="/dice/5/4">Roll 5 four-sided dice</a></li>
-    </ul>
-  HTML
+  erb(:elephant)
 end
 
 # Code for rolling 2 six-sided dice
