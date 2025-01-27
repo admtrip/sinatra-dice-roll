@@ -5,6 +5,12 @@ require "sinatra/reloader"
 require "better_errors"
 require "binding_of_caller"
 
+# Need this configuration for better_errors
+use(BetterErrors::Middleware)
+BetterErrors.application_root = __dir__
+BetterErrors::Middleware.allow_ip!('0.0.0.0/0.0.0.0')
+
+
 get "/" do
   <<-HTML
     <h1>Welcome to the Dice Roller</h1>
@@ -42,16 +48,18 @@ end
 
 get ("/dice/1/20") do 
   first_die = rand(1..20)
-  sum = first_die + second_die
-  
+    
   outcome = "You rolled a #{first_die}."
 end
 
 # Code for rolling 5 four-sided dice
 
 get ("/dice/5/4") do 
-  dice = array.new(5) { rand(1..4) }
-  sum = dice.sum
+  first_die = rand(1..4)
+	second_die = rand(1..4)
+  third_die = rand(1..4)
+  fourth_die = rand(1..4)
+  sum = first_die + second_die + third_die + fourth_die
   
-  outcome = "You rolled a #{dice.join(', ')} for a total of #{sum}."
+  outcome = "You rolled a #{first_die}, a #{second_die}, a #{third_die}, and a #{fourth_die} for a total of #{sum}."
 end
